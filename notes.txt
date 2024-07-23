@@ -1,0 +1,114 @@
+//MVC 
+
+//M --> model (data operation and interaction from database);
+//V --> View (whatever user is viewing )
+//C --> Controller (application logic)
+
+
+//user try to login 
+
+//step1 : we will do basic check username and password are valid
+//step2: we will check if user has used correct credentials (username and password) connect to database
+//step3: we will decide what we need to show 
+    //home page 
+    //invalid crednetials
+
+
+//Rest API 
+representation state transfer application program interface    
+
+A REST API (Representational State Transfer Application Programming Interface) is a type of API that adheres to the principles of REST. REST is an architectural style for designing networked applications, and it is not a standard or protocol but a set of constraints that help design scalable and stateless web services.
+
+A RESTful API is an API that conforms to the principles and constraints of REST. Essentially, a RESTful API is a REST API that follows REST principles.
+
+Key Differences
+REST API: The term broadly refers to APIs designed according to REST principles but doesn’t always fully conform to all REST constraints.
+
+RESTful API: This specifically refers to APIs that adhere strictly to REST constraints and principles, including stateless interactions, uniform interface, and resource-based interactions.
+
+REST Principles and Constraints
+To design a RESTful API, follow these guidelines:
+
+Statelessness:
+
+Each request from the client to the server must contain all the information the server needs to fulfill the request. The server should not store any state about the client session between requests.
+Client-Server Architecture:
+
+The client and server should be separate entities. The client is responsible for the user interface and user experience, while the server handles data processing and storage.
+Uniform Interface:
+
+RESTful APIs should have a consistent and uniform way of interacting with resources. This includes:
+Resource Identification: Resources should be identified by URLs.
+Resource Manipulation: Use standard HTTP methods (GET, POST, PUT, DELETE) to manipulate resources.
+Representation: Resources can be represented in various formats such as JSON, XML, or HTML.
+Stateless Communication:
+
+Each request from the client to the server must be independent and contain all the information needed to process the request. The server does not store any client context.
+Cacheability:
+
+Responses should explicitly indicate whether they can be cached or not. Caching can improve performance and scalability.
+Layered System:
+
+A RESTful system can be composed of multiple layers, with each layer having a specific functionality. For example, a client might interact with an intermediary server, which interacts with another server.
+Code on Demand (Optional):
+
+Servers can provide executable code (like JavaScript) to clients to extend client functionality. This is optional and not commonly used in practice.
+Designing RESTful APIs
+Use HTTP Methods Appropriately: Use GET to retrieve data, POST to create data, PUT/PATCH to update data, and DELETE to remove data.
+Design Resources: Identify and design resources (entities) that will be exposed via the API. Use nouns in URLs to represent resources, e.g., /users, /orders.
+Version Your API: Include a version number in your API URLs (e.g., /api/v1/users) to manage changes over time.
+Use Proper Status Codes: Return appropriate HTTP status codes to indicate the outcome of requests, e.g., 200 OK, 404 Not Found, 500 Internal Server Error.
+Document Your API: Provide clear and comprehensive documentation for your API, including endpoints, request and response formats, and usage examples.
+By adhering to these principles and guidelines, you can design a RESTful API that is scalable, maintainable, and easy to use.
+
+
+REST APi --> few guidelines/design you need to follow
+
+
+RESTfull services
+
+
+i want to get data of student having id 1
+
+method : get --> read operation
+
+/student-get-data/1
+/get-data-from-student/1
+/read-data-student/1
+/student/1 
+
+method : delete
+delete operation 
+/delete-student/1
+/delete-student-id/1
+/student-delete/1
+/student/1
+
+
+CRUD
+
+Create 
+ method : POST 
+ api : /resource
+{
+
+}
+
+
+Read 
+ method : GET 
+ api :/resource --> all resource 
+
+api : /resource/id --> only resource having id
+
+Update 
+ method : PUT 
+ api : /resource/id
+
+
+Delete 
+method :DELETE 
+api :/resoucre/id
+
+
+
