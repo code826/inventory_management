@@ -112,3 +112,8 @@ api :/resoucre/id
 
 
 
+//on home page i want to show all products
+
+//model -->products : [];
+//request -->controller --> model -> get products 
+controller --> products --> view -->ejs --> controller --> client

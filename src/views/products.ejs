@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    <title>Products</title>
+    <title><%= title %></title>
 </head>
 
 <body>
@@ -19,6 +19,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Inventory App</a>
+            <a class="navbar-brand" href="/add-product">Add Product</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -45,33 +46,17 @@
                 </tr>
             </thead>
             <tbody>
+                <% for(let i =0;i< products.length;i++) { %>
                 <tr>
-                    <th>1</th>
-                    <td>Atomic Habits</td>
-                    <td>A supremely practical and useful book. </td>
-                    <td scope="col">300</td>
+                    <th><%= products[i].id %></th>
+                    <td><%= products[i].name %></td>
+                    <td><%= products[i].desc %></td>
+                    <td scope="col"><%= products[i].prices %></td>
                     <td>
-                        <img src="https://m.media-amazon.com/images/I/51-nXsSRfZL._SX328_BO1,204,203,200_.jpg" />
+                        <img src='<%= products[i].imageUrl %>' />
                     </td>
                 </tr>
-                <tr>
-                    <th>2</th>
-                    <td>Ikigai</td>
-                    <td>The Japanese secret to a long and happy life</td>
-                    <td scope="col">340</td>
-                    <td>
-                        <img src="https://m.media-amazon.com/images/I/51xwGSNX-EL._SX356_BO1,204,203,200_.jpg" />
-                    </td>
-                </tr>
-                <tr>
-                    <th>3</th>
-                    <td>Deep Work</td>
-                    <td>RULES FOR FOCUSED SUCCESS IN A DISTRACTED WORLD</td>
-                    <td scope="col">280</td>
-                    <td>
-                        <img src="https://m.media-amazon.com/images/I/31PBdo581fL._SX317_BO1,204,203,200_.jpg" />
-                    </td>
-                </tr>
+                <% } %>
             </tbody>
         </table>
     </div>

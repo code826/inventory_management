@@ -6,3 +6,10 @@
 img{
     width: 80px;
 }
+
+#main-container-add-form{
+    height: auto;
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+}
