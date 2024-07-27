@@ -1,0 +1,12 @@
+<tr>
+    <th><%= product.id %></th>
+    <td><%= product.name %></td>
+    <td><%= product.desc %></td>
+    <td scope="col"><%= product.price %></td>
+    <td>
+        <img src='<%= product.imageUrl %>' />
+    </td>
+    <td>
+        <button type="button" class="btn btn-info"><a href="/product?id=<%= product.id %>">Edit</a></button>
+    </td>
+</tr>

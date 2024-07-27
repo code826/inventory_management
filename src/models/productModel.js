@@ -3,9 +3,36 @@ export default class ProductModel{
         this.id = _id;
         this.name = _name;
         this.desc = _desc;
-        this.prices = _prices;
+        this.price = _prices;
         this.imageUrl = _imageUrl;
     }
+    getName(){
+        return this.name;
+    }
+    setName(_name){
+        this.name = _name;
+    }
+
+    getPrice(){
+        return this.price;
+
+    }
+    setPrice(_price){
+        this.price = _price;
+    }
+    getDesc(){
+        return this.desc;
+    }
+    setDesc(_desc){
+        this.desc = _desc;
+    }
+    getImageUrl(){
+        return this.imageUrl;
+    }
+    setImageUrl(_imageUrl){
+        this.imageUrl = _imageUrl;
+    }
+    
     static addProduct(prodObj){
         let newProduct = new ProductModel(products.length+1,prodObj.name,prodObj.desc,prodObj.prices,prodObj.imageUrl);
         products.push(newProduct); 
@@ -15,6 +42,28 @@ export default class ProductModel{
         return products;
         //.sort();
     }
+
+    static getPrdouctFromId(_id){
+       let resp = null;
+       for(let i =0;i<products.length;i++){
+        if(products[i].id == _id){
+            resp = products[i];
+            break;
+        }
+       }
+       return resp;
+    }
+    
+    static isValidId(_id){
+        let idFound = false;
+        for(let i =0;i<products.length;i++){
+            if(products[i].id == _id){
+                idFound = true;
+                break;
+        } 
+        return idFound;
+    }
+}
 }
 
 //in fututre this thing thing from database
