@@ -1,9 +1,9 @@
 export default class ProductModel{
-    constructor(_id,_name,_desc,_prices,_imageUrl){
+    constructor(_id,_name,_desc,_price,_imageUrl){
         this.id = _id;
         this.name = _name;
         this.desc = _desc;
-        this.price = _prices;
+        this.price = _price;
         this.imageUrl = _imageUrl;
     }
     getName(){
@@ -34,7 +34,7 @@ export default class ProductModel{
     }
     
     static addProduct(prodObj){
-        let newProduct = new ProductModel(products.length+1,prodObj.name,prodObj.desc,prodObj.prices,prodObj.imageUrl);
+        let newProduct = new ProductModel(products.length+1,prodObj.name,prodObj.desc,prodObj.price,prodObj.imageUrl);
         products.push(newProduct); 
         return true;
     }
@@ -60,10 +60,16 @@ export default class ProductModel{
             if(products[i].id == _id){
                 idFound = true;
                 break;
-        } 
+            } 
+        }
         return idFound;
     }
-}
+    static deleteProductFromId(_id){
+        products = products.filter((item) =>{
+            return item.id != _id;
+        })
+        return true;
+    }
 }
 
 //in fututre this thing thing from database

@@ -1,6 +1,9 @@
 
     <%- include('nav.ejs') %>
     <div class="container">
+        <% if(locals.errorMssg){ %>
+            <p id="err-mssg"> <%= errorMssg %> </p>
+        <% } %>
         <table class="table table-dark">
             <thead>
                 <tr>
@@ -9,7 +12,7 @@
                     <th scope="col">Description</th>
                     <th scope="col">Price</th>
                     <th scope="col">Image</th>
-                    <th scope="col">Action</th>
+                    <th class ="action-th" scope="col" colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>

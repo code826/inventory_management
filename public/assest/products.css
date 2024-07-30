@@ -17,3 +17,10 @@ img{
     color: red;
     font-size: 25px;
 }
+.action-th{
+    text-align: center;
+}
+td .btn a {
+    text-decoration: none;
+    color:white;
+}

@@ -28,10 +28,13 @@ server.post('/test',(req,res)=>{
 
 
 server.get('/',productController.getAllProducts);
+server.get('/product',productController.getProductWithId);
 server.get('/add-product',productController.addNewProducts);
 server.post('/add-product-save',productController.addNewProductSave);
 server.post('/edit-product-save',productController.editProductSave);
-server.get('/product',productController.getProductWithId);
+server.delete('/delete-product/:id',productController.deleteProduct);
+
+
 
 server.listen(PORT,(err)=>{
     if(err){

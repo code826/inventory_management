@@ -9,4 +9,7 @@
     <td>
         <button type="button" class="btn btn-info"><a href="/product?id=<%= product.id %>">Edit</a></button>
     </td>
+    <td>
+        <button type="button" class="btn btn-danger delete-product-btn" onclick="handleDeleteBtn('<%= product.id %>')">Delete</button>
+    </td>
 </tr>

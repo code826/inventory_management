@@ -39,10 +39,10 @@ export default class ProductsController{
         errors.push(errorMssg);
       }
 
-      if(!validator.isAlpha(name)){
-        errorMssg = "String should contain only a-z A-Z";
-        errors.push(errorMssg);
-      }
+    //   if(!validator.isAlpha(name)){
+    //     errorMssg = "String should contain only a-z A-Z";
+    //     errors.push(errorMssg);
+    //   }
 
       if(!desc){
         errorMssg = "Desc Is Not Valid";
@@ -117,7 +117,7 @@ export default class ProductsController{
     //     errorMssg = "Name Should Be  A Valid Alphanumeric Of Min 3 Character";
     //   }
 
-    if(ProductModel.isValidId(id)){
+    if(!ProductModel.isValidId(id)){
         errorMssg = "Id Is Not Valid";
         errors.push(errorMssg);
     }
@@ -132,10 +132,10 @@ export default class ProductsController{
         errors.push(errorMssg);
       }
 
-      if(!validator.isAlpha(name)){
-        errorMssg = "String should contain only a-z A-Z";
-        errors.push(errorMssg);
-      }
+    //   if(!validator.isAlpha(name)){
+    //     errorMssg = "String should contain only a-z A-Z";
+    //     errors.push(errorMssg);
+    //   }
 
       if(!desc){
         errorMssg = "Desc Is Not Valid";
@@ -180,5 +180,44 @@ export default class ProductsController{
       product.setPrice(obj.price);
 
      return res.redirect('/');
+    }
+    deleteProduct(req,res){
+        //get the data
+        //params --> /delete-product/1
+        const {id} = req.params;
+        //validate the data
+
+        let errorMssg = "";
+        
+        if(typeof id == "string" && !validator.isNumeric(id)){
+            errorMssg = "Not A Valid Id";
+        }
+
+        let _id = Number(id);
+        if(Number.isNaN(_id)){
+            errorMssg = "Not A Valid Id";
+        }
+        //
+        //"",[1,33],"a,1a"
+        //delete operation
+
+       let isValid = ProductModel.isValidId(_id);
+       if(!isValid){
+        errorMssg = "Id Is Not Present";
+       }
+
+       if(errorMssg){
+        return res.status(401).json({
+            "success":false,
+            errorMssg:errorMssg
+        });
+       }
+
+       ProductModel.deleteProductFromId(_id);
+
+       return res.status(200).json({
+        "success":true
+    });
+       
     }
 }
