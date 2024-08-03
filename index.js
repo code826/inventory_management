@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import expressEjsLayouts from 'express-ejs-layouts';
 import ProductController from './src/controllers/productController.js';
+import uploadFile from './src/middleware/uploadFile.js';
 
 const PORT = 8000;
 
@@ -21,8 +22,9 @@ server.set('layout', 'layout');
 const productController = new ProductController();
 
 
-server.post('/test',(req,res)=>{
+server.get('/test',(req,res)=>{
     console.log(req.body);
+    console.log(req.get('host'));
     return res.send('ok');
 });
 
@@ -30,11 +32,10 @@ server.post('/test',(req,res)=>{
 server.get('/',productController.getAllProducts);
 server.get('/product',productController.getProductWithId);
 server.get('/add-product',productController.addNewProducts);
-server.post('/add-product-save',productController.addNewProductSave);
-server.post('/edit-product-save',productController.editProductSave);
+server.post('/add-product-save', uploadFile.single('imageUrl'),productController.addNewProductSave);
+server.post('/edit-product-save',uploadFile.single('imageUrl'),productController.editProductSave);
 server.delete('/delete-product/:id',productController.deleteProduct);
-
-
+//req.file
 
 server.listen(PORT,(err)=>{
     if(err){

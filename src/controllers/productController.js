@@ -2,7 +2,8 @@ import path from 'path';
 import validator from 'validator';
 
 import ProductModel from '../models/productModel.js';
-import { error } from 'console';
+//unlink
+
 
 // export function getAllProducts(req,res){
 //     return res.sendFile(path.join(path.resolve(),'src','views','products.html'));
@@ -19,11 +20,12 @@ export default class ProductsController{
     }
     addNewProductSave(req,res){
         //get the data
-      const {name,desc,price,imageUrl} = req.body;
-
+      const {name,desc,price} = req.body;
+      let imageUrl = `http://localhost:8000/images/${req.file.filename}`;
         //validate the data
       let errorMssg = null;
       let errors = [];
+      console.log(req.file);
       //3@1
     //   if(!name || name.length < 4 || !validator.isAlpha(name)){
     //     errorMssg = "Name Should Be  A Valid Alphanumeric Of Min 3 Character";
@@ -60,8 +62,8 @@ export default class ProductsController{
         errors.push(errorMssg);
       }
 
-      if(!validator.isURL(imageUrl)){
-        errorMssg = `Not A Valid Url`;
+      if(!req.file || !req.file.filename){
+        errorMssg = `Not A Valid Image`;
         errors.push(errorMssg);
       }
 
@@ -100,15 +102,19 @@ export default class ProductsController{
         if(!product){
             errorMssg = 'Id Not Found';
         }
-       
+        console.log('test',product.imageUrl);
         return res.render('product-create',{product_id:product.id,name:product.name,desc:product.desc,price:product.price,imageUrl:product.imageUrl,errorMssg:errorMssg,isEdit:true});
        
     }
     editProductSave(req,res){
     
         //get the data
-      const {id,name,desc,price,imageUrl} = req.body;
-
+      const {id,name,desc,price} = req.body;
+      let imageUrl = null;
+      if(req.file){
+        let imageUrl = `http://localhost:8000/images/${req.file.filename}`;
+      }
+      
         //validate the data
       let errorMssg = null;
       let errors = [];
@@ -153,8 +159,12 @@ export default class ProductsController{
         errors.push(errorMssg);
       }
 
-      if(!validator.isURL(imageUrl)){
-        errorMssg = `Not A Valid Url`;
+      // if(!validator.isURL(imageUrl)){
+      //   errorMssg = `Not A Valid Url`;
+      //   errors.push(errorMssg);
+      // }
+      if(imageUrl && !req.file.filename){
+        errorMssg = `image is not valid`;
         errors.push(errorMssg);
       }
 
@@ -169,14 +179,16 @@ export default class ProductsController{
       let obj = {
         name :name.trim(),
         desc:desc.trim(),
-        price:priceToInsert,
-        imageUrl:imageUrl.trim()
+        price:priceToInsert
       }
 
      let product =ProductModel.getPrdouctFromId(id);
       product.setName(obj.name);
       product.setDesc(obj.desc);
-      product.setImageUrl(obj.imageUrl);
+      if(imageUrl){
+        product.setImageUrl(obj.imageUrl);
+      }
+     // product.setImageUrl(obj.imageUrl);
       product.setPrice(obj.price);
 
      return res.redirect('/');

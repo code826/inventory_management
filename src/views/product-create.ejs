@@ -11,7 +11,7 @@
 <% }else{ %>
 <% var route = "/add-product-save";%>
 <% } %>
-<form action=<%= route %> method="post">
+<form action="<%= route %>" method="post" enctype="multipart/form-data">
     <% if(locals.product_id){ %>
         <input type="hidden" name="id" value =<%= product_id %> >
     <% } %>
@@ -42,14 +42,21 @@
             <input type="number" class="form-control" id="price" name="price"/>
         <% } %>
     </div>
-    <div class="mb-3">
+    <!-- <div class="mb-3">
         <label for="imageUrl" class="form-label">Image Url</label>
         <% if(locals.imageUrl){ %>
             <input type="url" class="form-control" id="imageUrl" name="imageUrl"  value = <%= imageUrl %> >
             <% }else{ %>
             <input type="url" class="form-control" id="imageUrl" name="imageUrl"/>
         <% } %>
+    </div> -->
+    <div class="mb-3">
+        <label for="imageUrl" class="form-label">Image Url</label>
+        <input type="file" class="form-control" id="imageUrl" name="imageUrl" accept="image/*"/>
     </div>
+    <%if(locals.imageUrl){ %>
+        <img  class ="img-url-class" src="<%= imageUrl %>">
+    <% } %>
     <button type="submit" class="btn btn-primary">
         <% if(locals.isEdit){ %>
             Edit Product
