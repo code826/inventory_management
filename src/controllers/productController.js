@@ -11,9 +11,14 @@ import ProductModel from '../models/productModel.js';
 
 export default class ProductsController{
     getAllProducts(req,res){
+      //if user has login 
+      console.log('user',req.user);
+      if(!req.user){
+        return res.redirect('/user/login');
+      }
         //return res.sendFile(path.join(path.resolve(),'src','views','products.html'));
        let products1 = ProductModel.getProducts();
-       return  res.render('products',{title:'Product',products:products1});
+       return  res.render('products',{title:'Product',products:products1,name:req.user.name});
     }
     addNewProducts(req,res){
         return res.render('product-create');

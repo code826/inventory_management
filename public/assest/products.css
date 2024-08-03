@@ -7,7 +7,7 @@ img{
     width: 80px;
 }
 
-#main-container-add-form{
+#main-container-add-form,.register-form{
     height: auto;
     width: 80%;
     margin: auto;

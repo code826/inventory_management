@@ -509,3 +509,4 @@ how to pass data in get request
 
 /delete-product/1 --> req.params
 /delete-product?id=1 --> query Params --> req.query
+
