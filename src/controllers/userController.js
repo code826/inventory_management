@@ -40,8 +40,17 @@ export default class UserController{
         if(user.password !== password){
             return res.render('error',{errorMssg:'Email Not Valid'}); 
         }
-        res.cookie('email',user.email);
-
+       // res.cookie('email',user.email);
+        req.session.email = user.email;
         return res.redirect('/');
+    }
+    logout(req,res){
+        req.session.destroy((err)=>{
+            if(err){
+                console.log(err);
+            }else{
+                res.redirect('/');
+            }
+        })
     }
 }

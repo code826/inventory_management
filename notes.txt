@@ -510,3 +510,17 @@ how to pass data in get request
 /delete-product/1 --> req.params
 /delete-product?id=1 --> query Params --> req.query
 
+//authentication v/s authorization
+
+//authentication --> to identify who the user is 
+
+//register --> name,email,address ,password,DOB 
+//login --> email -->  password ,username,mobile number
+
+//
+//cookies 
+//HTTP Request is a new request ,stateless
+req 1
+req 2 --> doesn't know anything about req-1
+//when we have done login 
+req 2 --> 

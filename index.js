@@ -3,7 +3,8 @@ import path from 'path';
 import expressEjsLayouts from 'express-ejs-layouts';
 import ProductController from './src/controllers/productController.js';
 import uploadFile from './src/middleware/uploadFile.js';
-import cookieParser from 'cookie-parser';
+//import cookieParser from 'cookie-parser';
+import session from 'express-session';
 import UserController from './src/controllers/userController.js';
 import UserModel from './src/models/userModel.js';
 const PORT = 8000;
@@ -13,7 +14,7 @@ const server = express();
 
 server.use(express.urlencoded({extended:true}));// post req or get request post www-form-urlencoded
 server.use(express.json());//when content type application/json
-server.use(cookieParser());//cookies in header req.cookies
+//server.use(cookieParser());//cookies in header req.cookies
 server.use(express.static('public'));
 
 server.set('view engine','ejs');
@@ -21,27 +22,51 @@ server.set('views',path.join(path.resolve(),'src','views'));
 server.use(expressEjsLayouts);
 server.set('layout', 'layout');
 
+server.use(
+    session({
+        secret:'Secreet',
+        resave:false,
+        saveUninitialized:true,
+        cookie:{
+            maxAge:1000*60
+        }
+    })
+);
+
 const productController = new ProductController();
 const userController = new  UserController();
 
 
 server.get('/test',(req,res)=>{
-    //cookie-parser --> use to parse the cookies
-    console.log('cookies',req.cookies);
-    res.cookie('name','vikas',{maxAge:1000*60});
+    
+    // if(!req.session.views){
+    //     req.session.views = 0;
+    // }
+    // req.session.views++;
+
+    // //cookie-parser --> use to parse the cookies
+    // console.log('view',req.session.views);
+  //  res.cookie('name','vikas',{maxAge:1000*60});
     return res.send('okk');
 });
 
 server.use('/',(req,res,next)=>{
     // cookies and fin if there is something from email
-    if(req.cookies.email){
-       let user = UserModel.getUserFromEmail(req.cookies.email);
-       console.log('user',user,req.cookies.email);
+    // if(req.cookies.email){
+    //    let user = UserModel.getUserFromEmail(req.cookies.email);
+    //    console.log('user',user,req.cookies.email);
+    //    req.user = user;
+    // }else{
+    //     req.user = null;
+    // }
+   if(req.session.email){
+       let user = UserModel.getUserFromEmail(req.session.email);
+       console.log('user',user,req.session.email);
+       res.locals.user = user;
        req.user = user;
-    }else{
-        req.user = null;
-    }
-   
+   }else{
+       req.user = null;
+   }
     next();
 });
 
@@ -57,6 +82,7 @@ server.get('/user/register',userController.getRegister);
 server.post('/user/register',userController.postRegister);
 server.get('/user/login',userController.loginUser);
 server.post('/user/login',userController.postlogin);
+server.get('/user/logout',userController.logout);
 //req.file
 
 server.listen(PORT,(err)=>{

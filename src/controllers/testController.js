@@ -6,3 +6,5 @@ function init(){
   console.log(a);
 }
 init();
+
+
