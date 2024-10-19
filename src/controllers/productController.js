@@ -50,7 +50,7 @@ export default class ProductsController{
     //     errorMssg = "String should contain only a-z A-Z";
     //     errors.push(errorMssg);
     //   }
-
+//0,-0."",null,undefined,false
       if(!desc){
         errorMssg = "Desc Is Not Valid";
         errors.push(errorMssg);

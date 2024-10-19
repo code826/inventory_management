@@ -61,6 +61,9 @@ Use Proper Status Codes: Return appropriate HTTP status codes to indicate the ou
 Document Your API: Provide clear and comprehensive documentation for your API, including endpoints, request and response formats, and usage examples.
 By adhering to these principles and guidelines, you can design a RESTful API that is scalable, maintainable, and easy to use.
 
+/api/v1/student
+/api/v2/student
+
 
 REST APi --> few guidelines/design you need to follow
 
@@ -76,6 +79,7 @@ method : get --> read operation
 /get-data-from-student/1
 /read-data-student/1
 /student/1 
+/student
 
 method : delete
 delete operation 
@@ -524,3 +528,61 @@ req 1
 req 2 --> doesn't know anything about req-1
 //when we have done login 
 req 2 --> 
+
+
+//MVC 
+ //disadvantage
+    1. tight coupling between controller and view 
+    2. don't able to scale 
+    3. maintainance (view on backend)
+    4. complexity
+  //alternatives
+  //API 
+   //api --> application program interface ,
+      //it return data while MVC return view 
+      //sometime we need data so that we can analyze 
+      //server to server 
+
+   //SOAP  --> structure way 
+   //RESTAPI -->
+   //ad 
+     // loose couple 
+     // independent devlopment
+      REST --> Representational State Transfer 
+        1. stalessness --> no information of client on server end 
+        2. the are guidlelines you can follow 
+         --> status code 
+         --> json data ,
+         --> use of url 
+            /resource/1 
+
+   //GraphQL  --> aggration data , and slection
+
+
+   const EventEmitter = require('events');
+const myEmitter = new EventEmitter();
+
+// Register a listener for the 'greet' event
+myEmitter.on('greet', () => {
+  console.log('Hello, world!');
+});
+
+// Emit the 'greet' event
+myEmitter.emit('greet');  // Output: Hello, world!
+//sigin 
+eventEmitter.emit('signup');
+
+eventEmitter.on('signup',()=>{
+  //newletter,
+})
+
+
+//MVC design 
+//inventory managament
+  //routes 
+  //controller 
+  //model 
+  //middleware
+  //views using view engine
+  //authentication 
+  //event emitter  

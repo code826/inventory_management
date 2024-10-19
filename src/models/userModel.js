@@ -9,6 +9,10 @@ export default class UserModel{
         const user = new UserModel(users.length+1,obj.name,obj.email,obj.password);
         users.push(user);
     }
+    getName(){
+        return this.name;
+    }
+
     static getUserFromEmail(email){
         for(let i =0;i<users.length;i++){
             if(users[i].email  == email){
@@ -18,6 +22,7 @@ export default class UserModel{
         return null;
     }
 }
+
 
 const users = [
     new UserModel(1,'dummy','dummy@gmail.com','dummy123')

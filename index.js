@@ -7,7 +7,7 @@ import uploadFile from './src/middleware/uploadFile.js';
 import session from 'express-session';
 import UserController from './src/controllers/userController.js';
 import UserModel from './src/models/userModel.js';
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 
 const server = express();
@@ -28,7 +28,7 @@ server.use(
         resave:false,
         saveUninitialized:true,
         cookie:{
-            maxAge:1000*60
+            maxAge:1000*60*10
         }
     })
 );
@@ -36,9 +36,8 @@ server.use(
 const productController = new ProductController();
 const userController = new  UserController();
 
-
 server.get('/test',(req,res)=>{
-    
+    return  res.send("<h1>hello</h1>")
     // if(!req.session.views){
     //     req.session.views = 0;
     // }
@@ -47,7 +46,7 @@ server.get('/test',(req,res)=>{
     // //cookie-parser --> use to parse the cookies
     // console.log('view',req.session.views);
   //  res.cookie('name','vikas',{maxAge:1000*60});
-    return res.send('okk');
+   // return res.send('okk');
 });
 
 server.use('/',(req,res,next)=>{

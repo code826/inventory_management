@@ -1,0 +1,91 @@
+Inventory Managament 
+    we want to create,read,delete,update the products 
+    authentication ,authorization
+    resoucre
+        user 
+            register
+            login
+            logout
+            reset-password
+            accoutn setting
+        product 
+            CRUD 
+        authorization 
+            anyone can read the products 
+            but for creating,update,delete he need to login 
+
+MVC 
+ model 
+  user 
+    id,name,address,mobilenumber,email,password --> done
+  product
+    id,title,describtio,price,imageUrl --> done
+
+ controller
+    productController
+        CREATE,READ,UPDATE,DELETE 
+        Create 
+            /add-product --> return view page 
+            /add-product-save --> save the product sent by the previous
+        Edit
+            /edit-product --> sending the id , queryParams -->
+                //i need to read from the id
+             return view page    
+            /edit-product-save
+
+    userController
+    
+
+
+
+ model --> controller -->
+
+
+ REST (Representational State Transfer) is not a protocol but a set of architectural principles or guidelines for designing networked applications, particularly web services.
+
+REST and RESTful API:
+REST: It is an architectural style defined by a set of constraints and principles. REST is used to create web services that are scalable, stateless, and can be easily accessed and manipulated using standard HTTP methods like GET, POST, PUT, DELETE, etc.
+
+RESTful API: When an API follows the principles of REST, it is called a RESTful API. This means the API is designed to use HTTP methods, be stateless, have a clear structure with resource URIs, and often returns data in a format like JSON or XML.
+
+Key Principles of REST:
+Statelessness: Each request from a client to a server must contain all the information the server needs to fulfill that request. The server does not store any client context between requests.
+
+Client-Server Architecture: The client and server are separate, and the interaction between them is stateless and uniform. The client can be on a different platform than the server.
+
+Uniform Interface: REST defines a uniform interface between clients and servers, simplifying and decoupling the architecture. This is typically implemented via standard HTTP methods (GET, POST, PUT, DELETE).
+
+Resource Identification via URI: Resources are identified using URIs (Uniform Resource Identifiers). For example, in a RESTful API for managing users, /users might be the URI to get all users, and /users/1 could be the URI to get a user with an ID of 1.
+
+Representation of Resources: Resources are represented in a format like JSON, XML, or HTML. The client and server exchange these representations.
+
+Stateless Communication: Each request from the client to the server must contain all the information needed to understand and process the request.
+
+Cacheability: Responses must define themselves as cacheable or non-cacheable, to prevent clients from reusing stale or inappropriate data.
+
+Example of RESTful API:
+For a RESTful API managing books, you might have endpoints like:
+
+GET /books: Retrieve a list of all books.
+GET /books/{id}: Retrieve a specific book by its ID.
+POST /books: Create a new book.
+PUT /books/{id}: Update an existing book by its ID.
+DELETE /books/{id}: Delete a book by its ID.
+In summary, REST is a set of guidelines for designing APIs, not a protocol. A RESTful API is one that adheres to these guidelines, making use of standard HTTP methods, URIs, and stateless communication.
+
+
+HTTP METHOD 
+URL --> informative
+
+resoucres
+CRUD operation
+
+Create (POST)  
+    /books 
+Read --> GET
+    /books --> want the data of all books
+    /books/1 --> want the data for books of id 1
+Update (PUT)
+    /books/1
+Delete (DELETE)
+    /books/2

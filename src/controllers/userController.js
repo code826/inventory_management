@@ -11,6 +11,7 @@ export default class UserController{
         //name
         //email
         //password
+        console.log('password',password);
        let user = UserModel.getUserFromEmail(email);
        if(user){
         return res.render('error',{errorMssg:'user exist'});
@@ -31,11 +32,13 @@ export default class UserController{
             return res.render('error',{errorMssg:'Email Not Valid'});
         }
 
+        console.log('user',email);
         //
         let user = UserModel.getUserFromEmail(email);
         if(!user){
             return res.render('error',{errorMssg:'Email Not Valid'});
         }
+        console.log('user',user);
 
         if(user.password !== password){
             return res.render('error',{errorMssg:'Email Not Valid'}); 
